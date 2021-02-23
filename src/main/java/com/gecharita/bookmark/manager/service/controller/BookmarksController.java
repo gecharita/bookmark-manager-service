@@ -2,13 +2,14 @@ package com.gecharita.bookmark.manager.service.controller;
 
 import com.gecharita.bookmark.manager.service.dto.BookmarkDTO;
 import com.gecharita.bookmark.manager.service.mapper.BookmarkMapper;
+import com.gecharita.bookmark.manager.service.model.Bookmark;
 import com.gecharita.bookmark.manager.service.service.BookmarksService;
+import org.springframework.data.rest.webmvc.ResourceNotFoundException;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -41,5 +42,24 @@ public class BookmarksController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok().body(bookmarkDTOs);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteBookmark(@PathVariable long id){
+        bookmarksService.deleteBookmark(id);
+    }
+
+    @PostMapping("/")
+    public ResponseEntity<Bookmark> createBookmark(@RequestBody BookmarkDTO bookmarkDTO){
+        Bookmark bookmark = bookmarkMapper.toBookmark(bookmarkDTO);
+        bookmark = bookmarksService.createBookmark(bookmark);
+        return ResponseEntity.ok(bookmark);
+    }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<Bookmark> updateBookmark(@RequestBody BookmarkDTO bookmarkDTO, @PathVariable long id){
+        Bookmark bookmark = bookmarkMapper.toBookmark(bookmarkDTO);
+        bookmark = bookmarksService.updateBookmark(bookmark, id);
+        return ResponseEntity.ok(bookmark);
     }
 }
