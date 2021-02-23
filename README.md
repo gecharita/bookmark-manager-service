@@ -1,7 +1,7 @@
 # Bookmark Manager Service
 
 ---
-Client of the following project:
+Client exists here:
 https://github.com/gecharita/bookmark-manager
 ---
 
