@@ -1,4 +1,4 @@
-#Bookmark Manager Service
+# Bookmark Manager Service
 
 ---
 Client of the following project:
@@ -11,7 +11,7 @@ https://github.com/gecharita/bookmark-manager
 - The initialization script of the DB can be found here:
   [src/main/resources/data.sql](src/main/resources/data.sql)
   
-##REST API:
+## REST API:
 It exposes the following endpoints:
 - GET: /api/bookmarks
 - POST: /api/bookmarks
@@ -19,7 +19,7 @@ It exposes the following endpoints:
 - PUT: /api/bookmarks/{id}
 - GET: /api/bookmarks/test -> for testing
 
-####Request & Response Body example:
+#### Request & Response Body example:
 ```json
 {
     "id": 3,
@@ -29,7 +29,7 @@ It exposes the following endpoints:
 }
 ```
 
-##How to run:
+## How to run:
 ```sh
 # For MAC or LINUX users
 ./mvnw clean package
